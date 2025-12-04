@@ -1,0 +1,1042 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSAT Intercepts – Tailwind Prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .backdrop {
+      background: rgba(15, 23, 42, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <div class="max-w-5xl mx-auto py-10 px-4 space-y-10">
+
+    <header class="space-y-2">
+      <h1 class="text-3xl font-semibold tracking-tight">
+        CSAT Intercepts – Pattern Library
+      </h1>
+      <p class="text-sm text-slate-600">
+      </p>
+    </header>
+
+    <!-- =========================
+         1. INLINE CSAT CARD (BANNER)
+         ========================== -->
+    <section class="space-y-6">
+      <h2 class="text-xl font-semibold">1. Inline CSAT Card (Inline Banner)</h2>
+
+      <!-- Variant 1 – Star rating + optional comment -->
+      <div class="bg-white shadow-sm rounded-xl border border-slate-200 p-4 space-y-3">
+        <header class="flex items-start justify-between">
+          <div>
+            <h3 class="font-semibold text-sm">
+              Help us improve your experience
+            </h3>
+            <p class="text-xs text-slate-600 mt-1">
+              How satisfied are you with this step in MyBSWHealth?
+            </p>
+          </div>
+          <button
+            type="button"
+            class="text-slate-500 hover:text-slate-600"
+            aria-label="Dismiss feedback"
+            onclick="dismissInlineCard('inline-1')"
+          >
+            ✕
+          </button>
+        </header>
+
+        <div id="inline-1" class="space-y-3">
+          <div class="flex items-center gap-1" aria-label="Satisfaction rating" role="radiogroup">
+            <!-- Stars -->
+            <button
+              type="button"
+              class="star-btn size-8 flex items-center justify-center rounded-full border border-slate-200 text-xl hover:bg-amber-50"
+              data-group="inline-1"
+              data-value="1"
+              role="radio"
+              aria-checked="false"
+              aria-label="1 star – very dissatisfied"
+              tabindex="0"
+            >
+              ☆
+            </button>
+            <button
+              type="button"
+              class="star-btn size-8 flex items-center justify-center rounded-full border border-slate-200 text-xl hover:bg-amber-50"
+              data-group="inline-1"
+              data-value="2"
+              role="radio"
+              aria-checked="false"
+              aria-label="2 stars – dissatisfied"
+              tabindex="-1"
+            >
+              ☆
+            </button>
+            <button
+              type="button"
+              class="star-btn size-8 flex items-center justify-center rounded-full border border-slate-200 text-xl hover:bg-amber-50"
+              data-group="inline-1"
+              data-value="3"
+              role="radio"
+              aria-checked="false"
+              aria-label="3 stars – neutral"
+              tabindex="-1"
+            >
+              ☆
+            </button>
+            <button
+              type="button"
+              class="star-btn size-8 flex items-center justify-center rounded-full border border-slate-200 text-xl hover:bg-amber-50"
+              data-group="inline-1"
+              data-value="4"
+              role="radio"
+              aria-checked="false"
+              aria-label="4 stars – satisfied"
+              tabindex="-1"
+            >
+              ☆
+            </button>
+            <button
+              type="button"
+              class="star-btn size-8 flex items-center justify-center rounded-full border border-slate-200 text-xl hover:bg-amber-50"
+              data-group="inline-1"
+              data-value="5"
+              role="radio"
+              aria-checked="false"
+              aria-label="5 stars – very satisfied"
+              tabindex="-1"
+            >
+              ☆
+            </button>
+          </div>
+
+          <label class="block text-xs text-slate-700 space-y-1">
+            <span>In a few words, what could we do better?</span>
+            <textarea
+              class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+              rows="2"
+              placeholder="Optional"
+            ></textarea>
+          </label>
+
+          <div class="flex justify-between items-center">
+            <button
+              type="button"
+              class="text-xs font-medium text-slate-600 hover:text-slate-800"
+            >
+              Skip
+            </button>
+            <button
+              type="button"
+              class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-700 text-white hover:bg-sky-700"
+              onclick="submitInlineCard('inline-1')"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+
+        <p
+          id="inline-1-thankyou"
+          class="hidden text-xs text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2 mt-2"
+          role="status"
+          aria-live="polite"
+        >
+          Thank you for your feedback. It helps us improve MyBSWHealth.
+        </p>
+      </div>
+
+      <!-- Variant 2 – Ease Likert scale + optional follow-up -->
+      <div class="bg-white shadow-sm rounded-xl border border-slate-200 p-4 space-y-3">
+        <header class="flex items-start justify-between">
+          <div>
+            <h3 class="font-semibold text-sm">
+              One quick question
+            </h3>
+            <p class="text-xs text-slate-600 mt-1">
+              How easy or difficult was it to complete this task today?
+            </p>
+          </div>
+          <button
+            type="button"
+            class="text-slate-500 hover:text-slate-600"
+            aria-label="Dismiss feedback"
+            onclick="dismissInlineCard('inline-2')"
+          >
+            ✕
+          </button>
+        </header>
+
+        <div id="inline-2" class="space-y-3">
+          <div
+            class="grid grid-cols-5 gap-2 text-center text-[10px] text-slate-700"
+            role="radiogroup"
+            aria-label="Task ease rating"
+          >
+            <!-- 1–5 Likert -->
+            <button
+              type="button"
+              class="likert-btn px-2 py-2 rounded-lg border border-slate-200 hover:bg-slate-50"
+              data-group="inline-2"
+              data-value="1"
+              role="radio"
+              aria-checked="false"
+              tabindex="0"
+            >
+              Very difficult
+            </button>
+            <button
+              type="button"
+              class="likert-btn px-2 py-2 rounded-lg border border-slate-200 hover:bg-slate-50"
+              data-group="inline-2"
+              data-value="2"
+              role="radio"
+              aria-checked="false"
+              tabindex="-1"
+            >
+              Difficult
+            </button>
+            <button
+              type="button"
+              class="likert-btn px-2 py-2 rounded-lg border border-slate-200 hover:bg-slate-50"
+              data-group="inline-2"
+              data-value="3"
+              role="radio"
+              aria-checked="false"
+              tabindex="-1"
+            >
+              Neutral
+            </button>
+            <button
+              type="button"
+              class="likert-btn px-2 py-2 rounded-lg border border-slate-200 hover:bg-slate-50"
+              data-group="inline-2"
+              data-value="4"
+              role="radio"
+              aria-checked="false"
+              tabindex="-1"
+            >
+              Easy
+            </button>
+            <button
+              type="button"
+              class="likert-btn px-2 py-2 rounded-lg border border-slate-200 hover:bg-slate-50"
+              data-group="inline-2"
+              data-value="5"
+              role="radio"
+              aria-checked="false"
+              tabindex="-1"
+            >
+              Very easy
+            </button>
+          </div>
+
+          <label class="block text-xs text-slate-700 space-y-1">
+            <span>If you’d like, tell us why you chose that answer (optional).</span>
+            <textarea
+              class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+              rows="2"
+              placeholder="Optional"
+            ></textarea>
+          </label>
+
+          <div class="flex justify-end">
+            <button
+              type="button"
+              class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-700 text-white hover:bg-sky-700"
+              onclick="submitInlineCard('inline-2')"
+            >
+              Send feedback
+            </button>
+          </div>
+        </div>
+
+        <p
+          id="inline-2-thankyou"
+          class="hidden text-xs text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2 mt-2"
+          role="status"
+          aria-live="polite"
+        >
+          Thanks for sharing. Your feedback helps prioritize improvements.
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================
+         2. THUMBS MODULE
+         ========================== -->
+    <section class="space-y-6">
+      <h2 class="text-xl font-semibold">2. Thumbs Feedback Module</h2>
+
+      <!-- Variant 1 – Simple thumbs with thank-you -->
+      <div class="bg-white shadow-sm rounded-xl border border-slate-200 p-3 flex items-center justify-between gap-3">
+        <div>
+          <p class="text-sm font-medium" id="thumbs-1-label">Was this page helpful?</p>
+          <p class="text-xs text-slate-600">Your quick response helps us improve MyBSWHealth.</p>
+        </div>
+        <div
+          id="thumbs-1"
+          class="flex items-center gap-1"
+          role="group"
+          aria-labelledby="thumbs-1-label"
+        >
+          <button
+            type="button"
+            class="thumb-btn-1 inline-flex items-center justify-center size-8 rounded-full border border-slate-200 bg-white hover:bg-emerald-50"
+            aria-label="Yes, this was helpful"
+            data-value="up"
+          >
+            👍
+          </button>
+          <button
+            type="button"
+            class="thumb-btn-1 inline-flex items-center justify-center size-8 rounded-full border border-slate-200 bg-white hover:bg-rose-50"
+            aria-label="No, this was not helpful"
+            data-value="down"
+          >
+            👎
+          </button>
+        </div>
+        <p
+          id="thumbs-1-thankyou"
+          class="hidden text-xs text-emerald-700"
+          role="status"
+          aria-live="polite"
+        >
+          Thanks for letting us know.
+        </p>
+      </div>
+
+      <!-- Variant 2 – Thumbs with follow-up text on "down" -->
+      <div class="bg-white shadow-sm rounded-xl border border-slate-200 p-3 space-y-3">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <p class="text-sm font-medium" id="thumbs-2-label">Did you find what you needed?</p>
+            <p class="text-xs text-slate-600">
+              Tap a quick response. We’ll ask a follow-up only if something missed the mark.
+            </p>
+          </div>
+          <div
+            id="thumbs-2"
+            class="flex items-center gap-1"
+            role="group"
+            aria-labelledby="thumbs-2-label"
+          >
+            <button
+              type="button"
+              class="thumb-btn-2 inline-flex items-center justify-center size-8 rounded-full border border-slate-200 bg-white hover:bg-emerald-50"
+              aria-label="Yes, I found what I needed"
+              data-value="up"
+            >
+              👍
+            </button>
+            <button
+              type="button"
+              class="thumb-btn-2 inline-flex items-center justify-center size-8 rounded-full border border-slate-200 bg-white hover:bg-rose-50"
+              aria-label="No, I did not find what I needed"
+              data-value="down"
+            >
+              👎
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="thumbs-2-followup"
+          class="hidden space-y-2"
+          aria-live="polite"
+        >
+          <label class="block text-xs text-slate-700 space-y-1">
+            <span>Sorry we missed the mark. What were you hoping to do today?</span>
+            <textarea
+              class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+              rows="2"
+            ></textarea>
+          </label>
+          <div class="flex justify-end">
+            <button
+              type="button"
+              class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-700 text-white hover:bg-sky-700"
+              onclick="submitThumbsWithFollowup()"
+            >
+              Submit feedback
+            </button>
+          </div>
+        </div>
+
+        <p
+          id="thumbs-2-thankyou"
+          class="hidden text-xs text-emerald-700"
+          role="status"
+          aria-live="polite"
+        >
+          Thank you. We’ll review this to make the page better.
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================
+         3. FEEDBACK TAB
+         ========================== -->
+    <section class="space-y-6">
+      <h2 class="text-xl font-semibold">3. Feedback Tab (Persistent Trigger)</h2>
+      <p class="text-xs text-slate-600">
+        Scroll to see page-level tabs fixed to viewport edges. Click them to open panels.
+      </p>
+
+      <!-- Simple demo container (nothing needed inside) -->
+      <div class="h-40 bg-gradient-to-r from-sky-50 to-indigo-50 border border-dashed border-slate-200 rounded-xl flex items-center justify-center text-xs text-slate-500">
+        Simulated page content…
+      </div>
+    </section>
+
+    <!-- Feedback Tab Variant 1 – right side vertical tab + small panel -->
+    <button
+      id="feedback-tab-1"
+      type="button"
+      class="fixed right-0 top-1/3 z-30 -translate-y-1/2 bg-sky-700 text-white text-xs font-medium px-2 py-2 rounded-l-full shadow-md hover:bg-sky-700"
+      onclick="toggleSidePanel(true)"
+      aria-label="Open feedback panel"
+    >
+      Feedback
+    </button>
+
+    <aside
+      id="side-panel"
+      class="fixed right-4 top-4 w-80 max-w-full bg-white border border-slate-200 rounded-xl shadow-xl p-4 space-y-3 z-40 hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="side-panel-title"
+    >
+      <header class="flex items-start justify-between">
+        <div>
+          <h3 id="side-panel-title" class="text-sm font-semibold">Tell us about this page</h3>
+          <p class="text-xs text-slate-600">This should take less than 30 seconds.</p>
+        </div>
+        <button
+          type="button"
+          class="text-slate-500 hover:text-slate-600"
+          aria-label="Close feedback"
+          onclick="toggleSidePanel(false)"
+        >
+          ✕
+        </button>
+      </header>
+      <label class="block text-xs text-slate-700 space-y-1">
+        <span>What were you trying to do today?</span>
+        <textarea
+          class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+          rows="2"
+        ></textarea>
+      </label>
+      <label class="block text-xs text-slate-700 space-y-1">
+        <span>Did you accomplish it?</span>
+        <select
+          class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+        >
+          <option>Yes</option>
+          <option>No</option>
+          <option>Partially</option>
+        </select>
+      </label>
+      <div class="flex justify-end">
+        <button
+          type="button"
+          class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-700 text-white hover:bg-sky-700"
+          onclick="submitSidePanel()"
+        >
+          Send
+        </button>
+      </div>
+      <p
+        id="side-panel-thankyou"
+        class="hidden text-xs text-emerald-700"
+        role="status"
+        aria-live="polite"
+      >
+        Thank you for the feedback.
+      </p>
+    </aside>
+
+    <!-- Feedback Tab Variant 2 – bottom fixed pill + drawer -->
+    <button
+      id="feedback-tab-2"
+      type="button"
+      class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 bg-white border border-slate-200 shadow-md text-xs font-medium px-4 py-2 rounded-full flex items-center gap-2 hover:bg-slate-50"
+      onclick="toggleBottomDrawer(true)"
+      aria-label="Open quick survey"
+    >
+      <span class="inline-block size-1.5 rounded-full bg-emerald-500"></span>
+      Share quick feedback
+    </button>
+
+    <div
+      id="bottom-drawer"
+      class="fixed inset-x-0 bottom-0 z-40 hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="bottom-drawer-title"
+    >
+      <div class="backdrop absolute inset-0" onclick="toggleBottomDrawer(false)"></div>
+      <div class="relative bg-white border-t border-slate-200 rounded-t-2xl shadow-2xl max-h-[70vh]">
+        <div class="max-w-2xl mx-auto px-4 py-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold" id="bottom-drawer-title">Quick 2-question survey</h3>
+            <button
+              type="button"
+              class="text-slate-500 hover:text-slate-600"
+              aria-label="Close survey"
+              onclick="toggleBottomDrawer(false)"
+            >
+              ✕
+            </button>
+          </div>
+          <p class="text-xs text-slate-600">
+            Your answers are anonymous and help us improve MyBSWHealth.
+          </p>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <p class="font-medium mb-1">Overall, how satisfied are you with MyBSWHealth today?</p>
+              <div
+                class="flex gap-1"
+                role="radiogroup"
+                aria-label="Overall satisfaction rating"
+              >
+                <!-- 1–5 chips -->
+                <button
+                  class="drawer-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                  data-value="1"
+                  role="radio"
+                  aria-checked="false"
+                  tabindex="0"
+                >
+                  1
+                </button>
+                <button
+                  class="drawer-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                  data-value="2"
+                  role="radio"
+                  aria-checked="false"
+                  tabindex="-1"
+                >
+                  2
+                </button>
+                <button
+                  class="drawer-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                  data-value="3"
+                  role="radio"
+                  aria-checked="false"
+                  tabindex="-1"
+                >
+                  3
+                </button>
+                <button
+                  class="drawer-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                  data-value="4"
+                  role="radio"
+                  aria-checked="false"
+                  tabindex="-1"
+                >
+                  4
+                </button>
+                <button
+                  class="drawer-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                  data-value="5"
+                  role="radio"
+                  aria-checked="false"
+                  tabindex="-1"
+                >
+                  5
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <p class="font-medium mb-1">
+                In a few words, what’s one thing we should improve?
+              </p>
+              <textarea
+                class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+                rows="2"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-1">
+            <button
+              type="button"
+              class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-700 text-white hover:bg-sky-700"
+              onclick="submitBottomDrawer()"
+            >
+              Submit
+            </button>
+          </div>
+          <p
+            id="bottom-drawer-thankyou"
+            class="hidden text-xs text-emerald-700"
+            role="status"
+            aria-live="polite"
+          >
+            Thanks — your feedback has been sent.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================
+         4. MODAL / DRAWER SURVEYS
+         ========================== -->
+    <section class="space-y-6 mt-16">
+      <h2 class="text-xl font-semibold">4. Modal / Drawer Surveys (High-Visibility)</h2>
+      <div class="space-y-3">
+        <button
+          type="button"
+          class="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800"
+          onclick="openCenterModal()"
+        >
+          Open CSAT modal (variant 1)
+        </button>
+        <button
+          type="button"
+          class="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800"
+          onclick="toggleFullDrawer(true)"
+        >
+          Open full-height drawer (variant 2)
+        </button>
+      </div>
+    </section>
+
+    <!-- Variant 1 – Center modal -->
+    <div
+      id="center-modal"
+      class="fixed inset-0 z-50 hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="center-modal-title"
+      aria-describedby="center-modal-desc"
+    >
+      <div class="backdrop absolute inset-0" onclick="closeCenterModal()"></div>
+      <div class="relative max-w-md mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-slate-200 p-5 space-y-3">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="text-sm font-semibold" id="center-modal-title">
+              Share your visit experience
+            </h3>
+            <p class="text-xs text-slate-600" id="center-modal-desc">
+              This quick survey helps us improve future visits. It should take under 1 minute.
+            </p>
+          </div>
+          <button
+            type="button"
+            class="text-slate-500 hover:text-slate-600"
+            aria-label="Close survey"
+            onclick="closeCenterModal()"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div>
+            <p class="font-medium mb-1">
+              How satisfied are you with your overall experience today?
+            </p>
+            <div
+              class="flex gap-1"
+              role="radiogroup"
+              aria-label="Overall visit satisfaction rating"
+            >
+              <button
+                class="modal-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                data-value="1"
+                role="radio"
+                aria-checked="false"
+                tabindex="0"
+              >
+                1
+              </button>
+              <button
+                class="modal-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                data-value="2"
+                role="radio"
+                aria-checked="false"
+                tabindex="-1"
+              >
+                2
+              </button>
+              <button
+                class="modal-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                data-value="3"
+                role="radio"
+                aria-checked="false"
+                tabindex="-1"
+              >
+                3
+              </button>
+              <button
+                class="modal-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                data-value="4"
+                role="radio"
+                aria-checked="false"
+                tabindex="-1"
+              >
+                4
+              </button>
+              <button
+                class="modal-score px-2 py-1 rounded-full border border-slate-200 hover:bg-slate-50"
+                data-value="5"
+                role="radio"
+                aria-checked="false"
+                tabindex="-1"
+              >
+                5
+              </button>
+            </div>
+          </div>
+          <div>
+            <p class="font-medium mb-1">
+              How easy was it to complete what you came here to do?
+            </p>
+            <select
+              class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+            >
+              <option>Very difficult</option>
+              <option>Difficult</option>
+              <option>Neither easy nor difficult</option>
+              <option>Easy</option>
+              <option>Very easy</option>
+            </select>
+          </div>
+          <div>
+            <p class="font-medium mb-1">Anything else you’d like us to know?</p>
+            <textarea
+              class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-1">
+          <button
+            type="button"
+            class="text-xs font-medium text-slate-600 hover:text-slate-800"
+            onclick="closeCenterModal()"
+          >
+            Not now
+          </button>
+          <button
+            type="button"
+            class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-700 text-white hover:bg-sky-700"
+            onclick="submitCenterModal()"
+          >
+            Submit
+          </button>
+        </div>
+        <p
+          id="center-modal-thankyou"
+          class="hidden text-xs text-emerald-700"
+          role="status"
+          aria-live="polite"
+        >
+          Thanks for taking the time to share your experience.
+        </p>
+      </div>
+    </div>
+
+    <!-- Variant 2 – Full-height drawer from right -->
+    <div
+      id="full-drawer"
+      class="fixed inset-0 z-50 hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="full-drawer-title"
+    >
+      <div class="backdrop absolute inset-0" onclick="toggleFullDrawer(false)"></div>
+      <div class="absolute inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl border-l border-slate-200 flex flex-col">
+        <div class="px-4 py-4 border-b border-slate-200 flex items-center justify-between">
+          <h3 class="text-sm font-semibold" id="full-drawer-title">Help us improve MyBSWHealth</h3>
+          <button
+            type="button"
+            class="text-slate-500 hover:text-slate-600"
+            aria-label="Close survey"
+            onclick="toggleFullDrawer(false)"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="flex-1 overflow-y-auto px-4 py-4 space-y-4 text-xs">
+          <p class="text-slate-600">
+            This short survey focuses on your digital experience (navigation, speed, clarity of information).
+          </p>
+
+          <div class="space-y-2">
+            <p class="font-medium">How easy was it to find what you needed?</p>
+            <div class="flex flex-col gap-1">
+              <label class="inline-flex items-center gap-2">
+                <input type="radio" name="drawer-ease" class="size-3" />
+                <span>Very easy</span>
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="radio" name="drawer-ease" class="size-3" />
+                <span>Easy</span>
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="radio" name="drawer-ease" class="size-3" />
+                <span>Neither easy nor difficult</span>
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="radio" name="drawer-ease" class="size-3" />
+                <span>Difficult</span>
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="radio" name="drawer-ease" class="size-3" />
+                <span>Very difficult</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <p class="font-medium">Which of these did you use today? (Select all that apply.)</p>
+            <div class="grid grid-cols-2 gap-1">
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" class="size-3" /> Scheduling
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" class="size-3" /> Billing & payments
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" class="size-3" /> Messages
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" class="size-3" /> Test results
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" class="size-3" /> Prescriptions
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" class="size-3" /> Other
+              </label>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <p class="font-medium">In your own words, what should we improve first?</p>
+            <textarea
+              class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="px-4 py-3 border-t border-slate-200 flex justify-end gap-2">
+          <button
+            type="button"
+            class="text-xs font-medium text-slate-600 hover:text-slate-800"
+            onclick="toggleFullDrawer(false)"
+          >
+            Skip
+          </button>
+          <button
+            type="button"
+            class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-700 text-white hover:bg-sky-700"
+            onclick="submitFullDrawer()"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =========================
+       INTERACTION SCRIPTS
+       ========================== -->
+  <script>
+    // Inline cards
+    function dismissInlineCard(id) {
+      const container = document.getElementById(id);
+      const thanks = document.getElementById(id + '-thankyou');
+      if (container) container.classList.add('hidden');
+      if (thanks) thanks.classList.remove('hidden');
+    }
+
+    function submitInlineCard(id) {
+      // Here you would send data to Qualtrics / analytics
+      dismissInlineCard(id);
+    }
+
+    // Star rating buttons (radiogroup behavior)
+    document.querySelectorAll('.star-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = btn.dataset.group;
+        const value = Number(btn.dataset.value);
+        const stars = document.querySelectorAll(`.star-btn[data-group="${group}"]`);
+        stars.forEach(star => {
+          const v = Number(star.dataset.value);
+          star.textContent = v <= value ? '★' : '☆';
+          star.classList.toggle('bg-amber-50', v <= value);
+          star.setAttribute('aria-checked', v === value ? 'true' : 'false');
+          star.tabIndex = v === value ? 0 : -1;
+        });
+      });
+    });
+
+    // Likert buttons (radiogroup behavior)
+    document.querySelectorAll('.likert-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = btn.dataset.group;
+        const items = document.querySelectorAll(`.likert-btn[data-group="${group}"]`);
+        items.forEach(item => {
+          item.classList.remove('bg-sky-50', 'border-sky-500', 'text-sky-700');
+          item.setAttribute('aria-checked', 'false');
+          item.tabIndex = -1;
+        });
+        btn.classList.add('bg-sky-50', 'border-sky-500', 'text-sky-700');
+        btn.setAttribute('aria-checked', 'true');
+        btn.tabIndex = 0;
+      });
+    });
+
+    // Thumbs variant 1
+    document.querySelectorAll('.thumb-btn-1').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const container = document.getElementById('thumbs-1');
+        const thanks = document.getElementById('thumbs-1-thankyou');
+        if (container) container.classList.add('hidden');
+        if (thanks) thanks.classList.remove('hidden');
+        // send thumb value via btn.dataset.value
+      });
+    });
+
+    // Thumbs variant 2
+    document.querySelectorAll('.thumb-btn-2').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const value = btn.dataset.value;
+        const panel = document.getElementById('thumbs-2');
+        const follow = document.getElementById('thumbs-2-followup');
+        const thanks = document.getElementById('thumbs-2-thankyou');
+
+        if (value === 'up') {
+          if (panel) panel.classList.add('hidden');
+          if (thanks) thanks.classList.remove('hidden');
+        } else {
+          if (follow) follow.classList.remove('hidden');
+        }
+        // send thumb value
+      });
+    });
+
+    function submitThumbsWithFollowup() {
+      const follow = document.getElementById('thumbs-2-followup');
+      const thumbs = document.getElementById('thumbs-2');
+      const thanks = document.getElementById('thumbs-2-thankyou');
+      if (follow) follow.classList.add('hidden');
+      if (thumbs) thumbs.classList.add('hidden');
+      if (thanks) thanks.classList.remove('hidden');
+    }
+
+    // Side panel (feedback tab v1)
+    function toggleSidePanel(open) {
+      const panel = document.getElementById('side-panel');
+      if (!panel) return;
+      panel.classList.toggle('hidden', !open);
+    }
+
+    function submitSidePanel() {
+      const thanks = document.getElementById('side-panel-thankyou');
+      if (thanks) thanks.classList.remove('hidden');
+      setTimeout(() => {
+        toggleSidePanel(false);
+        const tab = document.getElementById('feedback-tab-1');
+        if (tab) tab.classList.add('hidden');
+      }, 1600);
+    }
+
+    // Bottom drawer (feedback tab v2)
+    function toggleBottomDrawer(open) {
+      const drawer = document.getElementById('bottom-drawer');
+      if (!drawer) return;
+      drawer.classList.toggle('hidden', !open);
+      if (!open) {
+        const thanks = document.getElementById('bottom-drawer-thankyou');
+        if (thanks) thanks.classList.add('hidden');
+      }
+    }
+
+    document.querySelectorAll('.drawer-score').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const scores = document.querySelectorAll('.drawer-score');
+        scores.forEach(item => {
+          item.classList.remove('bg-sky-50', 'border-sky-500', 'text-sky-700');
+          item.setAttribute('aria-checked', 'false');
+          item.tabIndex = -1;
+        });
+        btn.classList.add('bg-sky-50', 'border-sky-500', 'text-sky-700');
+        btn.setAttribute('aria-checked', 'true');
+        btn.tabIndex = 0;
+      });
+    });
+
+    function submitBottomDrawer() {
+      const thanks = document.getElementById('bottom-drawer-thankyou');
+      if (thanks) thanks.classList.remove('hidden');
+      setTimeout(() => {
+        toggleBottomDrawer(false);
+        const tab = document.getElementById('feedback-tab-2');
+        if (tab) tab.classList.add('hidden');
+      }, 1600);
+    }
+
+    // Center modal
+    function openCenterModal() {
+      const modal = document.getElementById('center-modal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeCenterModal() {
+      const modal = document.getElementById('center-modal');
+      if (modal) modal.classList.add('hidden');
+      const thanks = document.getElementById('center-modal-thankyou');
+      if (thanks) thanks.classList.add('hidden');
+    }
+
+    document.querySelectorAll('.modal-score').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const scores = document.querySelectorAll('.modal-score');
+        scores.forEach(item => {
+          item.classList.remove('bg-sky-50', 'border-sky-500', 'text-sky-700');
+          item.setAttribute('aria-checked', 'false');
+          item.tabIndex = -1;
+        });
+        btn.classList.add('bg-sky-50', 'border-sky-500', 'text-sky-700');
+        btn.setAttribute('aria-checked', 'true');
+        btn.tabIndex = 0;
+      });
+    });
+
+    function submitCenterModal() {
+      const thanks = document.getElementById('center-modal-thankyou');
+      if (thanks) thanks.classList.remove('hidden');
+      setTimeout(() => closeCenterModal(), 1600);
+    }
+
+    // Full-height drawer
+    function toggleFullDrawer(open) {
+      const drawer = document.getElementById('full-drawer');
+      if (!drawer) return;
+      drawer.classList.toggle('hidden', !open);
+    }
+
+    function submitFullDrawer() {
+      toggleFullDrawer(false);
+    }
+  </script>
+</body>
+</html>
